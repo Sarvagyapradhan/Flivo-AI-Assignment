@@ -63,7 +63,8 @@ function ContactPage() {
     e.preventDefault()
     setStatus('loading')
     try {
-      const res = await axios.post('/api/contact', form)
+      const base = import.meta?.env?.VITE_API_BASE_URL || ''
+      const res = await axios.post(`${base}/api/contact`, form)
       setStatus(res.data?.message || 'Submitted')
       setForm({
         firstName: '', lastName: '', email: '', phone: '', serviceType: 'Web Application Security Audits', message: '', termsAccepted: false,
